@@ -1,0 +1,7 @@
+package com.hajres.petclinic.repositories;
+
+import com.hajres.petclinic.model.Vet;
+import org.springframework.data.repository.CrudRepository;
+
+public interface VetRepository extends CrudRepository<Vet, Long> {
+}
