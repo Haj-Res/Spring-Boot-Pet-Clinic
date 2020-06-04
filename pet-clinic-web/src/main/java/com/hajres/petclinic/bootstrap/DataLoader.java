@@ -5,10 +5,12 @@ import com.hajres.petclinic.model.Pet;
 import com.hajres.petclinic.model.PetType;
 import com.hajres.petclinic.model.Speciality;
 import com.hajres.petclinic.model.Vet;
+import com.hajres.petclinic.model.Visit;
 import com.hajres.petclinic.service.OwnerService;
 import com.hajres.petclinic.service.PetTypeService;
 import com.hajres.petclinic.service.SpecialityService;
 import com.hajres.petclinic.service.VetService;
+import com.hajres.petclinic.service.VisitService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -21,13 +23,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
-                      SpecialityService specialityService) {
+                      SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -81,6 +85,13 @@ public class DataLoader implements CommandLineRunner {
 
         ownerService.save(owner2);
 
+        Visit catVisit = new Visit();
+        catVisit.setPet(cat1);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitten");
+        cat1.addVisit(catVisit);
+
+        visitService.save(catVisit);
         System.out.println("Loaded Owners . . .");
 
         Speciality radiology = new Speciality();
@@ -110,5 +121,6 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(vet2);
         System.out.println("Loaded Vets . . .");
+
     }
 }
