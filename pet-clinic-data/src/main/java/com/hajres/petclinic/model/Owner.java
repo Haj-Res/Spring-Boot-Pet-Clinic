@@ -18,7 +18,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "owner")
 public class Owner extends Person {
@@ -33,6 +32,18 @@ public class Owner extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
+
+    @Builder
+    public Owner(String firstName, String lastName, String address, String city, String telephone, Set<Pet> pets) {
+        super(firstName, lastName);
+        this.address = address;
+        this.city = city;
+        this.telephone = telephone;
+        if (pets == null) {
+            pets = new HashSet<>();
+        }
+        this.pets = pets;
+    }
 
     public void addPet(Pet pet) {
         this.pets.add(pet);

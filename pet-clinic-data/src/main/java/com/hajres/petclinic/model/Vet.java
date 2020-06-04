@@ -19,7 +19,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "vet")
 public class Vet extends Person {
@@ -28,4 +27,13 @@ public class Vet extends Person {
             joinColumns = @JoinColumn(name = "vet_id"),
             inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     private Set<Speciality> specialities = new HashSet<>();
+
+    @Builder
+    public Vet(String firstName, String lastName, Set<Speciality> specialities) {
+        super(firstName, lastName);
+        if (specialities == null) {
+            specialities = new HashSet<>();
+        }
+        this.specialities = specialities;
+    }
 }

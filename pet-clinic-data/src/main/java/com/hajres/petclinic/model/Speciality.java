@@ -24,6 +24,7 @@ public class Speciality extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "specialities")
     private Set<Vet> vets = new HashSet<>();
 }
