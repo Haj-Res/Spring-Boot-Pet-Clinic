@@ -1,5 +1,5 @@
-# Spring-Boot-Pet-Clinic
 [![CircleCI](https://circleci.com/gh/Haj-Res/Spring-Boot-Pet-Clinic/tree/develop.svg?style=svg)](https://circleci.com/gh/Haj-Res/Spring-Boot-Pet-Clinic/tree/develop)
+# Spring-Boot-Pet-Clinic
 
 This repo is for learning Spring Boot with Spring Framework 5. It's a recreation of the official Spring Framework Pet
 Clinic with some experimental choices done in order to learn more about the framework.
